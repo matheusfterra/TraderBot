@@ -16,12 +16,11 @@ api_token = 'bjrXBRkA1w34VkJlZpe2pXuD9y2rzOn10wN72jtbmJOx3EQChNtCdU15vBOH'
 
 # print(data['data'][0]['market_cap'])
 
-url = 'https://api.worldtradingdata.com/api/v1/forex_single_day'
+url = 'https://api.worldtradingdata.com/api/v1/forex'
 params = {
   'base': 'USD',
-  'date': '2019-01-02',
-  'api_token': 'bjrXBRkA1w34VkJlZpe2pXuD9y2rzOn10wN72jtbmJOx3EQChNtCdU15vBOH'
+  'api_token': api_token
 }
 response = requests.request('GET', url, params=params)
 data=response.json()
-print(data)
+print(data['data']['BRL'])
