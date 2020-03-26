@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import plotly as py
 from plotly import tools
 import plotly.graph_objs as go
+import plotly.express as px
 
 start_date=datetime.date(2019,1,1)
 end_date=datetime.date(2019,1,2)
@@ -26,10 +27,16 @@ tick_data=tick_data.drop_duplicates(keep=False)
 ma = tick_data.close.rolling(center=False,window=30).mean()
 print(tick_data)
 
-trace0=go.Ohlc(x=tick_data.index,open=tick_data.open,high=tick_data.high,low=tick_data.low,close=tick_data.close,name='Currency Quote')
+trace0=go.Candlestick(x=tick_data.index,open=tick_data.open,high=tick_data.high,low=tick_data.low,close=tick_data.close,name='Currency Quote')
 trace1=go.Scatter(x=tick_data.index,y=ma)
-trace2=go.Bar(x=tick_data.index,y=tick_data['Volume'])
 
-data=[trace0,trace1,trace2]
+
+trace3=go.Scatter(x=['2019-01-01 22:00:00', '2019-01-02 23:55:00'], y=[1.14,1.14], mode="lines", name="SIGNAL")
+
+
+
+data=[trace0,trace1,trace3]
+
 
 py.offline.plot(data,filename='tutorial.html')
+#py.plot(data, filename = 'EURUSD', auto_open=True)
